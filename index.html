@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -36,10 +36,6 @@
 
         h1, h2, h3, h4, .serif-font {
             font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .script-font {
-            font-family: 'Great Vibes', cursive;
         }
 
         html, body {
@@ -93,6 +89,34 @@
             filter: brightness(0) invert(1);
             -webkit-filter: brightness(0) invert(1);
             opacity: 0.95;
+        }
+
+        /* Scroll Animations Base Classes */
+        .reveal-element {
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-fade-up {
+            transform: translateY(35px);
+        }
+
+        .reveal-fade-zoom {
+            transform: scale(0.88);
+        }
+
+        .reveal-fade-left {
+            transform: translateX(-30px);
+        }
+
+        .reveal-fade-right {
+            transform: translateX(30px);
+        }
+
+        .reveal-element.active {
+            opacity: 1;
+            transform: translate(0) scale(1);
         }
 
         /* 1. Intro Screen */
@@ -233,25 +257,27 @@
             margin-bottom: 15px;
         }
 
+        /* Updated Couples Names Title To Italic Serif */
         .couple-names-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            font-weight: 400 !important;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            font-weight: 500 !important;
             color: #ffffff;
-            line-height: 1.2;
-            margin: 10px 0;
+            line-height: 1.3;
+            margin: 8px 0;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             letter-spacing: 1px;
         }
 
         .couple-names-title span {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Playfair Display', Georgia, serif;
             font-style: italic;
             font-weight: 400 !important;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #e5d8cc;
             display: block;
-            margin: -5px 0;
+            margin: 2px 0;
         }
 
         .invitation-footer-text {
@@ -564,9 +590,6 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            animation-delay: 0.1s;
         }
 
         .program-frame-bg {
@@ -601,20 +624,6 @@
             color: #3b352e;
             text-align: center;
             font-style: italic;
-            opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            animation-delay: 0.25s;
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Dress Code Section */
@@ -1004,27 +1013,27 @@
             <!-- Welcome / Message Section -->
             <div class="welcome-section">
                 <!-- 2. Couple Logo Above Window Flowers -->
-                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo">
-                <img src="assets/window-flowers.png" alt="Flowers Frame Window" class="welcome-img">
-                <p class="welcome-text">
+                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo reveal-element reveal-fade-zoom">
+                <img src="assets/window-flowers.png" alt="Flowers Frame Window" class="welcome-img reveal-element reveal-fade-up">
+                <p class="welcome-text reveal-element reveal-fade-up">
                     "A cozy December to remember! We are overjoyed to invite you to celebrate our engagement as we step into this beautiful new season of our lives."
                 </p>
-                <div class="welcome-date-time">
+                <div class="welcome-date-time reveal-element reveal-fade-up">
                     Sunday, 13 December 2026 • 5:00 PM
                 </div>
             </div>
 
             <!-- Countdown Section -->
             <div class="countdown-section">
-                <div class="floral-divider-container" style="margin: 0 0 16px 0;">
+                <div class="floral-divider-container reveal-element reveal-fade-zoom" style="margin: 0 0 16px 0;">
                     <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
                 </div>
                 
                 <!-- 3. Couple Logo Above Countdown Title -->
-                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo">
-                <div class="countdown-main-title">Counting Down To The Big Day</div>
+                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo reveal-element reveal-fade-zoom">
+                <div class="countdown-main-title reveal-element reveal-fade-up">Counting Down To The Big Day</div>
                 
-                <div class="countdown-container-oval">
+                <div class="countdown-container-oval reveal-element reveal-fade-up">
                     <!-- Days -->
                     <div class="oval-wrapper">
                         <div class="oval-box">
@@ -1066,37 +1075,38 @@
             </div>
 
             <!-- Clock Divider -->
-            <div class="divider-container">
+            <div class="divider-container reveal-element reveal-fade-zoom">
                 <img src="assets/divider-clock.png" alt="Divider" class="divider-img">
             </div>
 
             <!-- Event Details Section -->
             <div class="section-padding">
-                <div class="event-details-header">
+                <div class="event-details-header reveal-element reveal-fade-up">
                     <div class="event-details-title">Engagement Details</div>
                     <div class="event-details-subtitle">Everything You Need To Know</div>
                 </div>
 
-                <div class="floral-divider-container">
+                <div class="floral-divider-container reveal-element reveal-fade-zoom">
                     <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
                 </div>
 
                 <!-- 4. Couple Logo Above Venue Icon -->
-                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo">
-                <img src="assets/venue-icon.png" alt="Venue Icon" class="venue-icon-top-img">
+                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo reveal-element reveal-fade-zoom">
+                <img src="assets/venue-icon.png" alt="Venue Icon" class="venue-icon-top-img reveal-element reveal-fade-up">
 
-                <div class="venue-name-block">
+                <div class="venue-name-block reveal-element reveal-fade-up">
                     <div class="venue-title-main">Raffles The Palm</div>
                     <div class="venue-location-sub">Dubai, United Arab Emirates</div>
                 </div>
 
-                <div class="map-card-framed">
-                    <div class="map-wrapper">
-                        <iframe src="https://maps.google.com/maps?q=Raffles+The+Palm+Dubai&amp;z=15&amp;output=embed" title="Google Map Location" loading="lazy"></iframe>
+                <!-- Lazy Loaded Optimized Map Frame -->
+                <div class="map-card-framed reveal-element reveal-fade-zoom" id="map-container">
+                    <div class="map-wrapper" id="map-wrapper">
+                        <!-- Map iframe injected dynamically via JS for zero lag -->
                     </div>
                 </div>
 
-                <div class="action-buttons-group">
+                <div class="action-buttons-group reveal-element reveal-fade-up">
                     <a href="https://maps.google.com/?q=Raffles+The+Palm+Dubai" target="_blank" rel="noopener noreferrer" class="action-btn btn-maps">
                         <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
                         <span>Open Map</span>
@@ -1108,17 +1118,17 @@
             <div class="section-padding">
                 <div class="program-header-section">
                     <!-- 5. Couple Logo Above Calendar Illustration -->
-                    <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo">
-                    <img src="assets/calendar-illustration.png" alt="Calendar Illustration" class="program-calendar-img">
-                    <div class="program-main-title">Event Program</div>
-                    <div class="floral-divider-container" style="margin: 8px 0 0 0;">
+                    <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo reveal-element reveal-fade-zoom">
+                    <img src="assets/calendar-illustration.png" alt="Calendar Illustration" class="program-calendar-img reveal-element reveal-fade-up">
+                    <div class="program-main-title reveal-element reveal-fade-up">Event Program</div>
+                    <div class="floral-divider-container reveal-element reveal-fade-zoom" style="margin: 8px 0 0 0;">
                         <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
                     </div>
                 </div>
 
                 <div class="program-center-wrapper">
                     <!-- Frame Image Container with Icon inside -->
-                    <div class="program-framed-container">
+                    <div class="program-framed-container reveal-element reveal-fade-zoom">
                         <img src="assets/program-frame.png" alt="Floral Oval Frame" class="program-frame-bg">
                         <div class="program-icon-inside">
                             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
@@ -1126,7 +1136,7 @@
                     </div>
 
                     <!-- Welcome Text Message -->
-                    <p class="program-welcome-msg">
+                    <p class="program-welcome-msg reveal-element reveal-fade-up">
                         "A cordial welcome to you all. The Engagement is scheduled to begin promptly at 6:00 PM"
                     </p>
                 </div>
@@ -1135,31 +1145,31 @@
             <!-- Dress Code Section -->
             <div class="dresscode-container">
                 <!-- 6. Couple Logo Above Dress Code Illustration -->
-                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo">
-                <img src="assets/dresscode-illustration.png" alt="Dress Code Illustration" class="dresscode-illustration">
-                <div class="dresscode-main-title">Dress Code</div>
-                <div class="dresscode-subtext-1">🤍 ATTIRE COLOUR NOTE</div>
+                <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo reveal-element reveal-fade-zoom">
+                <img src="assets/dresscode-illustration.png" alt="Dress Code Illustration" class="dresscode-illustration reveal-element reveal-fade-up">
+                <div class="dresscode-main-title reveal-element reveal-fade-up">Dress Code</div>
+                <div class="dresscode-subtext-1 reveal-element reveal-fade-up">🤍 ATTIRE COLOUR NOTE</div>
 
-                <p class="dresscode-intro">
+                <p class="dresscode-intro reveal-element reveal-fade-up">
                     As the bride will be wearing <strong>coral pink</strong> and the groom will be wearing <strong>beige/cream</strong>, we kindly ask our guests to avoid these colour families entirely so that the bride and groom remain the only ones in these tones.
                 </p>
 
-                <div class="dresscode-avoid-card">
+                <div class="dresscode-avoid-card reveal-element reveal-fade-zoom">
                     <div class="dresscode-avoid-title">Please do not wear</div>
                     <ul class="dresscode-list">
-                        <li>
+                        <li class="reveal-element reveal-fade-left">
                             <span>🌸</span>
                             <div>
                                 <strong>Any shade of pink:</strong> blush, baby pink, dusty pink, rose, mauve, salmon, coral, peach-pink, hot pink, etc.
                             </div>
                         </li>
-                        <li>
+                        <li class="reveal-element reveal-fade-right">
                             <span>🤍</span>
                             <div>
                                 <strong>Any shade of cream/ivory:</strong> ivory, off-white, eggshell, ecru, champagne, etc.
                             </div>
                         </li>
-                        <li>
+                        <li class="reveal-element reveal-fade-left">
                             <span>🤎</span>
                             <div>
                                 <strong>Any shade of beige/nude:</strong> beige, nude, sand, taupe, tan, camel, etc.
@@ -1168,7 +1178,7 @@
                     </ul>
                 </div>
 
-                <div class="dresscode-footer-note">
+                <div class="dresscode-footer-note reveal-element reveal-fade-up">
                     <p style="margin-bottom: 8px;">This applies to all shades and variations of these colours, including prints and colour combinations where these tones are prominent.</p>
                     <p>Please choose any other colour outside of these families. We truly appreciate you helping us keep these colours special for the bride &amp; groom.</p>
                 </div>
@@ -1176,12 +1186,12 @@
 
             <!-- RSVP Section -->
             <div class="rsvp-section-container">
-                <img src="assets/chair-icon.png" alt="Chair Icon" class="chair-icon-img">
+                <img src="assets/chair-icon.png" alt="Chair Icon" class="chair-icon-img reveal-element reveal-fade-zoom">
                 
-                <div class="rsvp-main-title">RSVP</div>
-                <div class="rsvp-subtext-1">Kindly respond before October 20, 2026</div>
+                <div class="rsvp-main-title reveal-element reveal-fade-up">RSVP</div>
+                <div class="rsvp-subtext-1 reveal-element reveal-fade-up">Kindly respond before October 20, 2026</div>
 
-                <form class="rsvp-custom-form" onsubmit="handleRSVP(event)">
+                <form class="rsvp-custom-form reveal-element reveal-fade-zoom" onsubmit="handleRSVP(event)">
                     <div class="rsvp-field-group">
                         <label class="rsvp-field-label" for="input-name">Full Name *</label>
                         <input type="text" class="rsvp-input-box" id="input-name" placeholder="Your Full Name" required>
@@ -1221,7 +1231,7 @@
                     </button>
                 </form>
 
-                <div class="bottom-logo-container">
+                <div class="bottom-logo-container reveal-element reveal-fade-up">
                     <img src="assets/bottom-logo.png" alt="Logo" class="bottom-logo-img">
                     <div class="bottom-event-date">13.12.2026</div>
                 </div>
@@ -1243,6 +1253,7 @@
         const muteSVG = `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>`;
 
         let isStarted = false;
+        let mapLoaded = false;
 
         window.addEventListener('DOMContentLoaded', () => {
             if (video) {
@@ -1315,6 +1326,44 @@
             if (introScreen) introScreen.classList.add('hidden');
             if (mainContent) mainContent.classList.add('visible');
             if (appViewport) appViewport.scrollTo({ top: 0, behavior: 'smooth' });
+
+            initScrollAnimations();
+        }
+
+        /* Scroll Animations & Optimized Map Injection */
+        function initScrollAnimations() {
+            const observerOptions = {
+                root: appViewport,
+                threshold: 0.15
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+
+                        /* Instant Map Loading when visible */
+                        if (entry.target.id === 'map-container' && !mapLoaded) {
+                            loadMapIframe();
+                            mapLoaded = true;
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal-element');
+            revealElements.forEach(el => revealObserver.observe(el));
+        }
+
+        function loadMapIframe() {
+            const mapWrapper = document.getElementById('map-wrapper');
+            if (mapWrapper && !mapWrapper.querySelector('iframe')) {
+                const iframe = document.createElement('iframe');
+                iframe.src = "https://maps.google.com/maps?q=Raffles+The+Palm+Dubai&z=15&output=embed";
+                iframe.title = "Google Map Location";
+                iframe.setAttribute('loading', 'lazy');
+                mapWrapper.appendChild(iframe);
+            }
         }
 
         /* Guests Counter Handlers */
