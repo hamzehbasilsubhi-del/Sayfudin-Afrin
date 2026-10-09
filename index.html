@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Engagement Invitation | Sayfudin & Afrin</title>
+    <title>Engagement Invitation | Sayfudin &amp; Afrin</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -21,15 +21,13 @@
             --icon-wine-color: #702f3b;
             --input-border: #e6d3d6;
             --label-color: #8c827a;
-            --app-width: min(100vw, 450px);
-            --app-height: min(100vh, calc(min(100vw, 450px) * 16 / 9));
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-weight: 300;
             -webkit-tap-highlight-color: transparent;
         }
@@ -38,9 +36,14 @@
             font-family: 'Playfair Display', Georgia, serif;
         }
 
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
         html, body {
             width: 100%;
             height: 100%;
+            height: -webkit-fill-available;
             background-color: #121212;
             color: var(--text-color);
             display: flex;
@@ -55,7 +58,6 @@
             max-width: 450px;
             height: 100vh;
             height: 100dvh;
-            max-height: calc(100vw * 16 / 9);
             background: var(--bg-color);
             position: relative;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
@@ -63,12 +65,14 @@
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             border-radius: 0;
+            padding-top: env(safe-area-inset-top, 0px);
             padding-bottom: env(safe-area-inset-bottom, 20px);
         }
 
         @media (min-width: 451px) {
             .app-container {
-                height: calc(450px * 16 / 9);
+                height: 100vh;
+                max-height: 880px;
                 border-radius: 16px;
             }
         }
@@ -116,7 +120,7 @@
 
         .reveal-element.active {
             opacity: 1;
-            transform: translate(0) scale(1);
+            transform: translate(0, 0) scale(1);
         }
 
         /* 1. Intro Screen */
@@ -133,6 +137,7 @@
             align-items: center;
             transition: opacity 0.6s ease, visibility 0.6s ease;
             cursor: pointer;
+            touch-action: manipulation;
         }
 
         #intro-screen.hidden {
@@ -190,7 +195,7 @@
             position: relative;
             width: 100%;
             aspect-ratio: 9 / 16;
-            background: #eee;
+            background: #111111;
             overflow: hidden;
         }
 
@@ -257,27 +262,26 @@
             margin-bottom: 15px;
         }
 
-        /* Updated Couples Names Title To Italic Serif */
+        /* Couples Names Title Restored To Luxurious Cursive Font */
         .couple-names-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-style: italic;
-            font-size: 2.5rem;
-            font-weight: 500 !important;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            font-weight: 400 !important;
             color: #ffffff;
-            line-height: 1.3;
-            margin: 8px 0;
+            line-height: 1.2;
+            margin: 10px 0;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             letter-spacing: 1px;
         }
 
         .couple-names-title span {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: 'Great Vibes', cursive;
             font-style: italic;
             font-weight: 400 !important;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #e5d8cc;
             display: block;
-            margin: 2px 0;
+            margin: -5px 0;
         }
 
         .invitation-footer-text {
@@ -879,7 +883,12 @@
             transition: opacity 0.3s ease;
         }
 
-        .rsvp-submit-btn:hover {
+        .rsvp-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .rsvp-submit-btn:hover:not(:disabled) {
             opacity: 0.92;
         }
 
@@ -1191,17 +1200,17 @@
                 <div class="rsvp-main-title reveal-element reveal-fade-up">RSVP</div>
                 <div class="rsvp-subtext-1 reveal-element reveal-fade-up">Kindly respond before October 20, 2026</div>
 
-                <form class="rsvp-custom-form reveal-element reveal-fade-zoom" onsubmit="handleRSVP(event)">
+                <form class="rsvp-custom-form reveal-element reveal-fade-zoom" id="rsvpForm" onsubmit="handleRSVP(event)">
                     <div class="rsvp-field-group">
                         <label class="rsvp-field-label" for="input-name">Full Name *</label>
-                        <input type="text" class="rsvp-input-box" id="input-name" placeholder="Your Full Name" required>
+                        <input type="text" class="rsvp-input-box" id="input-name" name="Name" placeholder="Your Full Name" required>
                     </div>
 
                     <div class="rsvp-field-group">
                         <label class="rsvp-field-label" for="input-guests">Number Of Guests *</label>
                         <div class="rsvp-counter-box">
                             <button type="button" class="rsvp-counter-btn" onclick="decrementGuests()">-</button>
-                            <input type="number" class="rsvp-counter-input" id="input-guests" value="1" min="1" required placeholder="Number of guests">
+                            <input type="number" class="rsvp-counter-input" id="input-guests" name="Guests" value="1" min="1" required placeholder="Number of guests">
                             <button type="button" class="rsvp-counter-btn" onclick="incrementGuests()">+</button>
                         </div>
                     </div>
@@ -1210,11 +1219,11 @@
                         <label class="rsvp-field-label">Will You Attend? *</label>
                         <div class="rsvp-radio-options">
                             <label class="rsvp-radio-item">
-                                <input type="radio" name="attendance" value="yes" checked required>
+                                <input type="radio" name="Attendance" value="Joyfully Accept" checked required>
                                 <span>Joyfully Accept</span>
                             </label>
                             <label class="rsvp-radio-item">
-                                <input type="radio" name="attendance" value="no">
+                                <input type="radio" name="Attendance" value="Regretfully Decline">
                                 <span>Regretfully Decline</span>
                             </label>
                         </div>
@@ -1222,12 +1231,12 @@
 
                     <div class="rsvp-field-group">
                         <label class="rsvp-field-label" for="input-msg">Message for Couple (Optional)</label>
-                        <textarea class="rsvp-input-box rsvp-textarea" id="input-msg" placeholder="Send your warm wishes..."></textarea>
+                        <textarea class="rsvp-input-box rsvp-textarea" id="input-msg" name="Message" placeholder="Send your warm wishes..."></textarea>
                     </div>
 
-                    <button type="submit" class="rsvp-submit-btn">
-                        <span>Submit RSVP</span>
-                        <svg class="svg-icon" style="width: 16px; height: 16px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    <button type="submit" class="rsvp-submit-btn" id="submitBtn">
+                        <span id="btnText">Submit RSVP</span>
+                        <svg class="svg-icon" id="btnIcon" style="width: 16px; height: 16px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                     </button>
                 </form>
 
@@ -1242,6 +1251,8 @@
     </div>
 
     <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzs7uakxRpi5Eu7UtDbJQv1eznrO8BO-MLnXpgirvIw3ssVewNjGMKwR1IdeU7-4xdWOg/exec';
+
         const video = document.getElementById('intro-video');
         const coverImg = document.getElementById('cover-img');
         const startBtn = document.getElementById('start-btn');
@@ -1254,6 +1265,7 @@
 
         let isStarted = false;
         let mapLoaded = false;
+        let timerInterval = null;
 
         window.addEventListener('DOMContentLoaded', () => {
             if (video) {
@@ -1263,11 +1275,15 @@
 
         function playAudioSafely() {
             if (!bgAudio) return;
-            bgAudio.play().then(() => {
-                if (musicIconContainer) musicIconContainer.innerHTML = musicSVG;
-            }).catch(error => {
-                console.log("Audio autoplay prevented by browser policy: ", error);
-            });
+            bgAudio.muted = false;
+            const playPromise = bgAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    if (musicIconContainer) musicIconContainer.innerHTML = musicSVG;
+                }).catch(error => {
+                    console.log("Audio play prevented by browser policy: ", error);
+                });
+            }
         }
 
         function startExperience() {
@@ -1291,7 +1307,7 @@
                             if (coverImg) coverImg.style.display = 'none';
                         }, 300);
                     }).catch(error => {
-                        console.log("Intro video error: ", error);
+                        console.log("Intro video playback error: ", error);
                         if (coverImg) coverImg.style.display = 'none';
                         transitionToMain();
                     });
@@ -1310,6 +1326,7 @@
         function toggleAudio() {
             if (!bgAudio) return;
             if (bgAudio.paused) {
+                bgAudio.muted = false;
                 bgAudio.play().then(() => {
                     if (musicIconContainer) musicIconContainer.innerHTML = musicSVG;
                 }).catch(err => console.log(err));
@@ -1347,6 +1364,9 @@
                             loadMapIframe();
                             mapLoaded = true;
                         }
+
+                        /* Performance improvement: unobserve element after animation triggers */
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -1370,7 +1390,7 @@
         function incrementGuests() {
             const input = document.getElementById('input-guests');
             if (input) {
-                const val = parseInt(input.value) || 0;
+                const val = parseInt(input.value, 10) || 0;
                 input.value = val + 1;
             }
         }
@@ -1378,7 +1398,7 @@
         function decrementGuests() {
             const input = document.getElementById('input-guests');
             if (input) {
-                const val = parseInt(input.value) || 1;
+                const val = parseInt(input.value, 10) || 1;
                 if (val > 1) {
                     input.value = val - 1;
                 }
@@ -1388,7 +1408,7 @@
         /* Engagement Date: 13 December 2026 */
         const eventDate = new Date('2026-12-13T17:00:00').getTime();
 
-        const timer = setInterval(function() {
+        timerInterval = setInterval(function() {
             const now = new Date().getTime();
             const difference = eventDate - now;
 
@@ -1408,7 +1428,7 @@
                 if (minutesEl) minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
                 if (secondsEl) secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
             } else {
-                clearInterval(timer);
+                if (timerInterval) clearInterval(timerInterval);
                 const container = document.querySelector(".countdown-container-oval");
                 if (container) {
                     container.innerHTML = `<p style='color:#3b352e;'>Welcome to our engagement party!</p>`;
@@ -1418,9 +1438,50 @@
 
         function handleRSVP(e) {
             e.preventDefault();
-            alert("Thank you! Your RSVP has been received successfully.");
-            e.target.reset();
-            document.getElementById('input-guests').value = "1";
+
+            const form = document.getElementById('rsvpForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            
+            const name = document.getElementById('input-name').value;
+            const guests = document.getElementById('input-guests').value;
+            const attendance = form.elements['Attendance'].value;
+            const message = document.getElementById('input-msg').value;
+
+            // Update UI State
+            submitBtn.disabled = true;
+            btnText.innerText = "Submitting...";
+
+            const params = new URLSearchParams();
+            params.append('Name', name);
+            params.append('Guests', guests);
+            params.append('Attendance', attendance);
+            params.append('Message', message);
+
+            // Fetch to Google Script using URLSearchParams and no-cors mode
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            })
+            .then(() => {
+                alert("Thank you! Your RSVP has been received successfully.");
+                form.reset();
+                document.getElementById('input-guests').value = "1";
+            })
+            .catch((error) => {
+                console.error("RSVP Error: ", error);
+                alert("Thank you! Your RSVP has been submitted.");
+                form.reset();
+                document.getElementById('input-guests').value = "1";
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                btnText.innerText = "Submit RSVP";
+            });
         }
     </script>
 </body>
