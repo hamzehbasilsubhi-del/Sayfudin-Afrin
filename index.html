@@ -226,11 +226,54 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px 20px;
+            padding: 30px 20px 55px 20px;
             color: #ffffff;
             text-align: center;
             z-index: 2;
             box-sizing: border-box;
+        }
+
+        /* Scroll Down Indicator in Hero Banner */
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 5;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            animation: bounceDown 2s infinite;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-down-text {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .scroll-down-arrow {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(6px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(3px);
+            }
         }
 
         /* Hero Text Animations */
@@ -246,6 +289,7 @@
         #main-content.visible .animate-hero.delay-4 { opacity: 1; transform: translateY(0); transition-delay: 0.8s; }
         #main-content.visible .animate-hero.delay-5 { opacity: 1; transform: translateY(0); transition-delay: 1.0s; }
         #main-content.visible .animate-hero.delay-6 { opacity: 1; transform: translateY(0); transition-delay: 1.2s; }
+        #main-content.visible .animate-hero.delay-7 { opacity: 1; transform: translateY(0); transition-delay: 1.4s; }
 
         /* Quran Verse Image Header */
         .quran-verse-img {
@@ -1027,11 +1071,17 @@
                     <div class="banner-divider animate-hero delay-5"></div>
                     <div class="wedding-day animate-hero delay-6">Sunday</div>
                     <div class="wedding-date-num animate-hero delay-6">13.12.2026</div>
+
+                    <!-- Scroll Down Indicator -->
+                    <div class="scroll-down-indicator animate-hero delay-7" onclick="scrollToWelcome()">
+                        <span class="scroll-down-text">Scroll Down</span>
+                        <svg class="scroll-down-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                    </div>
                 </div>
             </div>
 
             <!-- Welcome / Message Section -->
-            <div class="welcome-section">
+            <div class="welcome-section" id="welcome-section">
                 <!-- 2. Couple Logo Above Window Flowers -->
                 <img src="assets/couple-logo.png" alt="Couple SA Logo" class="unified-section-logo reveal-element reveal-fade-zoom">
                 <img src="assets/window-flowers.png" alt="Flowers Frame Window" class="welcome-img reveal-element reveal-fade-up">
@@ -1362,6 +1412,14 @@
             if (appViewport) appViewport.scrollTo({ top: 0, behavior: 'smooth' });
 
             initScrollAnimations();
+        }
+
+        /* Scroll To Welcome Section Function */
+        function scrollToWelcome() {
+            const welcomeSec = document.getElementById('welcome-section');
+            if (welcomeSec && appViewport) {
+                welcomeSec.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         /* Scroll Animations & Optimized Map Injection */
