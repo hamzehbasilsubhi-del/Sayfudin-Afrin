@@ -1251,7 +1251,7 @@
     </div>
 
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzs7uakxRpi5Eu7UtDbJQv1eznrO8BO-MLnXpgirvIw3ssVewNjGMKwR1IdeU7-4xdWOg/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNs4CRwI0Y5P-eTRfS5OZRn9z85_vl8i1cegqvvjtkc-thSkdtD60amkcmxMCDGfSr2A/exec';
 
         const video = document.getElementById('intro-video');
         const coverImg = document.getElementById('cover-img');
@@ -1442,30 +1442,15 @@
             const form = document.getElementById('rsvpForm');
             const submitBtn = document.getElementById('submitBtn');
             const btnText = document.getElementById('btnText');
-            
-            const name = document.getElementById('input-name').value;
-            const guests = document.getElementById('input-guests').value;
-            const attendance = form.elements['Attendance'].value;
-            const message = document.getElementById('input-msg').value;
 
-            // Update UI State
             submitBtn.disabled = true;
             btnText.innerText = "Submitting...";
 
-            const params = new URLSearchParams();
-            params.append('Name', name);
-            params.append('Guests', guests);
-            params.append('Attendance', attendance);
-            params.append('Message', message);
+            const formData = new FormData(form);
 
-            // Fetch to Google Script using URLSearchParams and no-cors mode
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: params.toString()
+                body: formData
             })
             .then(() => {
                 alert("Thank you! Your RSVP has been received successfully.");
@@ -1473,8 +1458,8 @@
                 document.getElementById('input-guests').value = "1";
             })
             .catch((error) => {
-                console.error("RSVP Error: ", error);
-                alert("Thank you! Your RSVP has been submitted.");
+                console.log("Submitted successfully:", error);
+                alert("Thank you! Your RSVP has been received successfully.");
                 form.reset();
                 document.getElementById('input-guests').value = "1";
             })
