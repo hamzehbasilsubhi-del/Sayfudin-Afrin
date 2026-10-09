@@ -21,7 +21,7 @@
             --icon-wine-color: #702f3b;
             --input-border: #e6d3d6;
             --label-color: #8c827a;
-            --cover-bg: #eac8b8; /* لون متناسق مع خلفية الظرف في الصورة */
+            --cover-bg: #eac8b8;
         }
 
         * {
@@ -126,15 +126,13 @@
             transform: translate(0, 0) scale(1);
         }
 
-        /* 1. Intro Screen & Cover Perfect Fixes */
+        /* 1. Intro Screen & Cover Ultimate Fixes */
         #intro-screen {
-            position: fixed;
+            position: absolute;
             inset: 0;
             width: 100%;
-            width: 100vw;
             height: 100%;
             height: 100dvh;
-            height: -webkit-fill-available;
             z-index: 10000;
             background-color: var(--cover-bg);
             display: flex;
@@ -146,6 +144,8 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         #intro-screen.hidden {
@@ -159,25 +159,11 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center center;
+            object-fit: contain;
+            object-position: center;
             z-index: 2;
             transition: opacity 0.4s ease;
-            display: block;
-        }
-
-        .hidden-trigger-btn {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            z-index: 5;
-            padding: 0;
-            margin: 0;
+            pointer-events: none;
         }
 
         #intro-video {
@@ -186,9 +172,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center center;
+            object-position: center;
             z-index: 1;
-            display: block;
+            pointer-events: none;
         }
 
         /* 2. Main Content */
@@ -207,7 +193,7 @@
             opacity: 1;
         }
 
-        /* Hero Banner Fixes for Android & iOS */
+        /* Hero Banner Fixes */
         .hero-banner {
             position: relative;
             width: 100%;
@@ -290,7 +276,6 @@
             margin-bottom: 15px;
         }
 
-        /* Couples Names Title Restored To Luxurious Cursive Font */
         .couple-names-title {
             font-family: 'Great Vibes', cursive;
             font-size: 3.2rem;
@@ -1007,8 +992,6 @@
         <!-- 1. Intro Screen & Cover Container -->
         <div id="intro-screen">
             <img src="assets/cover.jpg" id="cover-img" class="cover-img" alt="Invitation Cover">
-            <button class="hidden-trigger-btn" id="start-btn" aria-label="Start Experience"></button>
-
             <video id="intro-video" playsinline webkit-playsinline preload="auto" muted>
                 <source src="assets/intro.mp4" type="video/mp4">
             </video>
@@ -1284,7 +1267,6 @@
         const introScreen = document.getElementById('intro-screen');
         const video = document.getElementById('intro-video');
         const coverImg = document.getElementById('cover-img');
-        const startBtn = document.getElementById('start-btn');
         const bgAudio = document.getElementById('bg-audio');
         const musicIconContainer = document.getElementById('music-icon-container');
         const appViewport = document.getElementById('app-viewport');
@@ -1301,10 +1283,11 @@
                 video.load();
             }
 
-            // إضافة مستمع للأحداث يضمن دعم الضغط المباشر والتلمس على أجهزة الأندرويد
+            // ربط شامل ومتكامل لأحداث الضغط والتلمس
             if (introScreen) {
-                introScreen.addEventListener('click', startExperience, { passive: true });
-                introScreen.addEventListener('touchstart', startExperience, { passive: true });
+                ['pointerdown', 'touchstart', 'click'].forEach(evt => {
+                    introScreen.addEventListener(evt, startExperience, { passive: true, capture: true });
+                });
             }
         });
 
@@ -1316,12 +1299,13 @@
                 playPromise.then(() => {
                     if (musicIconContainer) musicIconContainer.innerHTML = musicSVG;
                 }).catch(error => {
-                    console.log("Audio play prevented by browser policy: ", error);
+                    console.log("Audio play prevented: ", error);
                 });
             }
         }
 
-        function startExperience() {
+        function startExperience(e) {
+            if (e && e.stopPropagation) e.stopPropagation();
             if (isStarted) return;
             isStarted = true;
 
@@ -1334,7 +1318,6 @@
                 const playPromise = video.play();
 
                 if (coverImg) coverImg.style.opacity = '0';
-                if (startBtn) startBtn.style.display = 'none';
 
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
@@ -1399,7 +1382,6 @@
                             mapLoaded = true;
                         }
 
-                        /* Performance improvement: unobserve element after animation triggers */
                         observer.unobserve(entry.target);
                     }
                 });
