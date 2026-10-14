@@ -95,7 +95,7 @@
         }
 
         .hero-banner .unified-section-logo {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             filter: brightness(0) invert(1);
             -webkit-filter: brightness(0) invert(1);
             opacity: 0.95;
@@ -208,7 +208,7 @@
             width: 100%;
             height: 100vh;
             height: 100dvh;
-            min-height: 720px;
+            min-height: 750px;
             background: #111111;
             overflow: hidden;
             display: flex;
@@ -230,12 +230,12 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.52);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 15px 15px 40px 15px;
+            padding: 15px 15px 35px 15px;
             color: #ffffff;
             text-align: center;
             z-index: 2;
@@ -245,7 +245,7 @@
         /* Scroll Down Indicator in Hero Banner */
         .scroll-down-indicator {
             position: absolute;
-            bottom: 10px;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -303,45 +303,55 @@
 
         /* Quran Verse Image Header */
         .quran-verse-img {
-            width: 68%;
-            max-width: 200px;
+            width: 65%;
+            max-width: 190px;
             height: auto;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             object-fit: contain;
             filter: brightness(0) invert(1);
             opacity: 0.95;
             -webkit-filter: brightness(0) invert(1);
         }
 
-        /* تكبير حجم النصوص في البانر الرئيسي لتبدو أوضح */
+        /* تكبير حجم النصوص في البانر الرئيسي بشكل أكبر وأوضح */
         .event-family-blessing {
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             line-height: 1.4;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             font-family: 'Playfair Display', Georgia, serif;
-            max-width: 360px;
+            max-width: 380px;
         }
 
-        /* تنسيق أسماء والدي العرسان بخط مميز وعمودي منفصل */
+        /* تنسيق أسماء والدي العرسان بخط مميز وعمودي منفصل وبحجم أكبر */
         .parent-name-line {
             font-family: 'Alex Brush', cursive !important;
-            font-size: 1.65rem;
-            line-height: 1.2;
+            font-size: 1.85rem;
+            line-height: 1.15;
             color: #e5d8cc;
             font-weight: 400 !important;
             letter-spacing: 0.5px;
             display: block;
+            margin: 1px 0;
+        }
+
+        .daughter-of-text {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 1.5rem;
+            color: #e5d8cc;
+            display: block;
             margin: 2px 0;
+            font-weight: 400 !important;
+            letter-spacing: 1px;
         }
 
         .couple-names-title {
             font-family: 'Great Vibes', cursive !important;
-            font-size: 3.1rem;
+            font-size: 3.3rem;
             font-weight: 400 !important;
             color: #ffffff;
             line-height: 1.1;
-            margin: 4px 0;
+            margin: 2px 0;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             letter-spacing: 1px;
         }
@@ -350,7 +360,7 @@
             font-family: 'Great Vibes', cursive !important;
             font-style: italic;
             font-weight: 400 !important;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: #e5d8cc;
             display: block;
             margin: -3px 0;
@@ -360,11 +370,11 @@
             width: 70px;
             height: 1px;
             background-color: rgba(255, 255, 255, 0.4);
-            margin: 6px auto 8px auto;
+            margin: 4px auto 6px auto;
         }
 
         .wedding-day {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             margin-bottom: 2px;
             color: #ffffff;
             letter-spacing: 1px;
@@ -373,7 +383,7 @@
 
         .wedding-date-num {
             font-family: 'Playfair Display', serif !important;
-            font-size: 1.12rem;
+            font-size: 1.18rem;
             letter-spacing: 3px;
             color: rgba(255, 255, 255, 0.95);
         }
@@ -1106,7 +1116,7 @@
                         <span class="parent-name-line">Mrs. Shaida Assanali</span>
                     </div>
 
-                    <div class="event-family-blessing animate-hero delay-3" style="font-size: 0.88rem; margin-top: 2px;">
+                    <div class="event-family-blessing animate-hero delay-3" style="font-size: 0.95rem; margin-top: 2px;">
                         request the honor of your presence at the engagement of their son
                     </div>
                     
@@ -1117,6 +1127,7 @@
                     </div>
 
                     <div class="animate-hero delay-4" style="margin: 2px 0;">
+                        <span class="daughter-of-text">Daughter of</span>
                         <span class="parent-name-line">Mr. Abdul Sacur &amp;</span>
                         <span class="parent-name-line">Mrs. Shahana Sadekar</span>
                     </div>
