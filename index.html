@@ -44,12 +44,12 @@
             font-family: 'Monsieur La Doulaise', cursive;
         }
 
-        /* تثبيت الخلفية العامة للشاشة الكلية */
+        /* تثبيت عرض الشاشة والـ Full Screen تماماً للجوال والشاشات الكبيرة */
         html, body {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             height: 100dvh;
-            background-color: #121212;
+            background-color: #111111;
             color: var(--text-color);
             display: flex;
             justify-content: center;
@@ -59,24 +59,35 @@
             inset: 0;
         }
 
-        /* تثبيت نسبة الأبعاد 9:16 جذرياً عبر جميع الأجهزة والمتصفحات */
+        /* الحاوية الرئيسية بنسبة 9:16 وملء الشاشة المطلق */
         .app-container {
             width: 100vw;
             height: 100vh;
             height: 100dvh;
-            max-width: min(450px, 100vw);
-            max-height: calc(min(450px, 100vw) * (16 / 9));
+            max-width: 100vw;
+            max-height: 100vh;
+            max-height: 100dvh;
             background: var(--bg-color);
             position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             border-radius: 0;
         }
 
-        @media (min-width: 451px) {
+        @media (min-aspect-ratio: 9/16) {
             .app-container {
+                width: calc(100vh * (9 / 16));
+                height: 100vh;
+                height: 100dvh;
+                box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 450px;
+                max-height: 880px;
                 border-radius: 20px;
                 border: 1px solid rgba(255, 255, 255, 0.1);
             }
@@ -128,7 +139,7 @@
             transform: translate(0, 0) scale(1);
         }
 
-        /* 1. Intro Screen Container */
+        /* 1. Intro Screen Container (Full Screen 100% غلاف أول) */
         #intro-screen {
             position: absolute;
             inset: 0;
@@ -166,7 +177,7 @@
 
         .intro-bottom-prompt {
             position: absolute;
-            bottom: 45px;
+            bottom: max(45px, env(safe-area-inset-bottom, 20px));
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -1066,7 +1077,7 @@
             </span>
         </button>
 
-        <!-- 1. Intro Screen Container -->
+        <!-- 1. Intro Screen Container (Full Screen 100%) -->
         <div id="intro-screen">
             <video id="intro-video" playsinline webkit-playsinline preload="auto" muted>
                 <source src="assets/intro.mp4" type="video/mp4">
@@ -1096,7 +1107,7 @@
                     </div>
 
                     <div class="parents-names-block animate-hero delay-3">
-                        Son of the Late Mr. Muhammad Anifo and Mrs. Shaida Assanali
+                        Son of the Late Mr. Muhammad Anifo and Mrs. Shaida Rajabali
                     </div>
                     
                     <div class="couple-names-amp animate-hero delay-3">
